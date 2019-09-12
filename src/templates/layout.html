@@ -6,6 +6,12 @@
   </head>
 
   <body>
+  
+    <ul>
+		<li><a href="{{ url_for('manufacturers_index') }}">List manufacturers</a></li>
+		<li><a href="{{ url_for('manufacturers_form') }}">Add a manufacturer</a></li>
+    </ul>
+  
     {% block body %}
       <p>
         Content.
