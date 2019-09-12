@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Manufacturer</th>
+    </tr>
+    {% for manufacturer in manufacturers %}
+    <tr>
+      <td>{{ manufacturer.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
