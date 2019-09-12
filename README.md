@@ -7,5 +7,7 @@ This enables for easy tracking of the certificates and possible traceability inf
 ### Current demo version on heroku :
 [Application demo](https://eqmanager.herokuapp.com/)
 
+### [User stories](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/userstories.md)
+
 Some idea of the schema (Will be simplified for this project, but that is something along what it's going to be eventually (possibly after the course)) :
 ![DatabaseModel](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/cman.PNG)
