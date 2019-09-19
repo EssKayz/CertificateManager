@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='signin.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='chkbox.css') }}">
+<div class="container center"
+  style="background-color: rgba(255,255,255, 0.8); width: 45%; border-radius: 12px; padding: 5px 20px">
+  <div>
+    <form method="POST" action="{{ url_for('auth_create') }}">
+      {{ form.csrf }}
+      <h2>Please Sign Up</h2>
+      <hr class="colorgraph" />
+      {% for error in form.username.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="username" required="required" id="username" class="form-control input-lg"
+              placeholder="Username" tabindex="2"></input>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="name" required="required" id="name" class="form-control input-lg"
+              placeholder="Name" tabindex="1"></input>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="password" name="password" required="required" id="password" class="form-control input-lg"
+              onkeyup="checkPasswordMatch();" placeholder="Password" tabindex="5"> </input>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="password" name="password_confirmation" required="required" id="password_confirmation"
+              onkeyup="checkPasswordMatch();" class="form-control input-lg" placeholder="Confirm Password"
+              tabindex="6"></input>
+          </div>
+        </div>
+        <h6 style="color: red; margin-left: 40%;" align="center" class="registrationFormAlert"
+          id="divCheckPasswordMatch" />
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-3">
+          <div id="myContainer">
+            <div class="center">
+              <input id="sliderCheck" required="required" type="checkbox" name="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-8 col-sm-9 col-md-9">
+          By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#"
+            data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our
+          Cookie Use.
+        </div>
+      </div>
+
+      <hr class="colorgraph" />
+      <div class="row">
+        <div class="col-xs-12 col-md-6"><input required="required" type="submit" value="Register" id="registerBtn"
+            class="btn btn-primary btn-block btn-lg" tabindex="7"></input></div>
+        <div class="col-xs-12 col-md-6"><a onclick="location.href= '/'" style="opacity : 0.5"
+            class="btn btn-secondary btn-block btn-lg">Cancel</a></div>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title" id="myModalLabel">Terms and Conditions</h4>
+        </div>
+        <div class="modal-body">
+          <p>You hereby accept to sell your soul to the highest bidder.</p>
+          <p>You accept any and all cookies that are used on the excorcism performed on your soul during the visit to
+            this website, for indefinite times.</p>
+          <p>You deny your freedom of choise and your right to complaint, becoming fully submissive to the powers
+            above your control, especially regarding any issues you encounter.</p>
+          <p>You will not discuss these terms and conditions with anyone, not even others that accepted them.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="getElementById('sliderCheck').checked = true" class="btn btn-primary"
+            data-dismiss="modal">I Agree</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</div>
+<!--/.container -->
+
+<script type="text/javascript" src="{{ url_for('static', filename='pwcheck.js') }}"></script>
+</form>
+{% endblock %}

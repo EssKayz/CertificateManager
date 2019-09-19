@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<link rel="stylesheet" href="{{ url_for('static', filename='signin.css') }}">
+<form class="form-signin center" method="POST" action="{{ url_for('auth_login') }}">
+      {{ form.csrf }}
+      <h1 class="h3 mb-3 font-weight-normal"
+            style="background-color: rgba(255,255,255, 0.8); border-radius: 12px; padding: 5px 20px">Please sign in</h1>
+      <label for="inputUserName" class="sr-only">Username</label>
+      <input type="text" id="inputUserName" name="username" class="form-control" placeholder="Username"
+            autofocus="true" />
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" />
+      <div class="col-xs-1" align="center">
+            <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <br />
+            <div class="col-xs-12 col-md-6">
+                  <a href="{{ url_for('auth_form') }}" style="opacity :0.85;" class="btn btn-success btn-block btn-sm"
+                        tabindex="7"> Or Register </a>
+            </div>
+      </div>
+
+</form>
+{% endblock %}
