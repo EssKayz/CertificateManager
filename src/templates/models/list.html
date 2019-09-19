@@ -6,7 +6,10 @@
 {% for model in models %}
 <ul>
   <li>
-    {{ model.name }} ( By : {{ model.manufacturer.name}} )
+    {{ model.name }} ( By : {{ model.manufacturer.name}} ) {% if model.eol %} (EOL Product) {% endif %}
+      <form method="POST" action="{{ url_for('model_setEol', model_id=model.id) }}">
+        <input type="submit" value="Retire product (Set EOL tag)" />
+      </form>
   </li>
 </ul>
 {% endfor %}

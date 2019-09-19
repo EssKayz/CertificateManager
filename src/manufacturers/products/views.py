@@ -15,6 +15,18 @@ def models_index():
 def models_form():
     return render_template("models/new.html", form = ModelForm())
 
+@app.route("/models/<model_id>/", methods=["POST"])
+def model_setEol(model_id):
+
+    m = Model.query.get(model_id)
+    if m.eol:
+        m.eol = False
+    else:
+        m.eol = True
+    db.session().commit()
+  
+    return redirect(url_for("models_index"))
+
 @app.route("/models/", methods=["POST"])
 @login_required
 def models_create():
