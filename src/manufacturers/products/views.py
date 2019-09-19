@@ -19,6 +19,10 @@ def models_form():
 @login_required
 def models_create():
     form = ModelForm(request.form)
+    
+    if not form.validate():
+        return render_template(url_for('models_form'), form = form)
+    
     t = Model(form.name.data)    
     t.manufacturer = form.manufacturer.data
 

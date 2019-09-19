@@ -18,8 +18,11 @@ def manufacturers_form():
 @app.route("/manufacturers/", methods=["POST"])
 @login_required
 def manufacturers_create():
+    form = ManufacturerForm(request.form)
+    if not form.validate():
+        return render_template(url_for('manufacturers_form'), form = form)
+    
     t = Manufacturer(request.form.get("name"))
-
     db.session().add(t)
     db.session().commit()
   
