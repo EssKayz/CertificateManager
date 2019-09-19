@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('manufacturers_create') }}">
+<form method="POST" action="{{ url_for('models_create') }}">
   <table>
     <tr>
       <td>
@@ -19,8 +19,16 @@
       </td>
     </tr>
     <tr>
+      <td>
+        {{ form.manufacturer.label}}
+      </td>
+      <td>
+        {{ form.manufacturer}}
+      </td>
+    </tr>
+    <tr>
       <td colspan="2">
-        <input type="submit" value="Add a new manufacturer" />
+        <input type="submit" value="Add a new model" />
       </td>
     </tr>
   </table>

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Models</h3>
+<p><span data-feather="plus"></span><a href="{{ url_for('models_form') }}">Add a model</a></p>
+{% for model in models %}
+<ul>
+  <li>
+    {{ model.name }} ( By : {{ model.manufacturer.name}} )
+  </li>
+</ul>
+{% endfor %}
+{% endblock %}

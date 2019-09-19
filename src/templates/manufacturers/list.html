@@ -1,14 +1,20 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Manufacturer</th>
-    </tr>
-    {% for manufacturer in manufacturers %}
-    <tr>
-      <td>{{ manufacturer.name }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+<h3>Manufacturers</h3>
+<p><span data-feather="plus"></span><a href="{{ url_for('manufacturers_form') }}">Add a manufacturer</a></p>
+
+{% for manufacturer in manufacturers %}
+<ul>
+  <li>
+    {{ manufacturer.name }}
+    <ul>
+      {% for model in manufacturer.models %}
+      <li>{{ model.name }}</li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>
+{% endfor %}
+
 {% endblock %}
