@@ -8,7 +8,9 @@ from src.manufacturers.forms import ManufacturerForm
 
 @app.route("/manufacturers", methods=["GET"])
 def manufacturers_index():
-    return render_template("manufacturers/list.html", manufacturers = Manufacturer.query.all())
+    return render_template("manufacturers/list.html", 
+                           manufacturers = Manufacturer.query.all(), 
+                           listeroo=Manufacturer.listByModel())
 	
 @app.route("/manufacturers/new/")
 @login_required

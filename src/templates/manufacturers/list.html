@@ -4,17 +4,40 @@
 <h3>Manufacturers</h3>
 <p><span data-feather="plus"></span><a href="{{ url_for('manufacturers_form') }}">Add a manufacturer</a></p>
 
-{% for manufacturer in manufacturers %}
-<ul>
-  <li>
-    {{ manufacturer.name }}
-    <ul>
-      {% for model in manufacturer.models %}
-      <li>{{ model.name }}</li>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% for manufacturer in manufacturers %}
+      <ul>
+        <li>
+          {{ manufacturer.name }}
+          <ul>
+            {% for model in manufacturer.models %}
+            <li>{{ model.name }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
       {% endfor %}
-    </ul>
-  </li>
-</ul>
-{% endfor %}
+    </div>
+    <div class="col">
+      {% if listeroo is defined %}
+      <p>
+       Top Manufacturers ordered by amount of models:
+      </p>
+
+      <ul>
+        {% for manu in listeroo %}
+        <li>
+          {{manu.name}} - {{manu.count}} products
+        </li>
+        {% endfor %}
+      </ul>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
