@@ -8,8 +8,8 @@ This enables for easy tracking of the certificates and possible traceability inf
 [Application demo](https://eqmanager.herokuapp.com/)
 
 User information for heroku test user :
-username: tsohauser
-password: tsoha19
+#### username: tsohauser
+#### password: tsoha19
 
 ### [User stories](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/userstories.md)
 
