@@ -42,7 +42,7 @@ class EquipmentAddForm(FlaskForm):
 
     def validate_serialnumber(self, serialnumber):
         serialnumber = Equipment.query.filter_by(
-            serialnumber=serialnumber.data).all()
+            serialnumber=serialnumber.data).first()
         if serialnumber is not None:
             raise ValidationError('Serialnumber already used')
 
