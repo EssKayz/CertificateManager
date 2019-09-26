@@ -22,7 +22,7 @@ class Manufacturer(db.Model):
     def listByModel():
         stmt = text("SELECT Manufacturer.id, COUNT(Model.name) as count, Manufacturer.name FROM Manufacturer "
                     " LEFT JOIN Model ON Manufacturer.id = Model.manufacturer_id"
-                    " GROUP BY Manufacturer.name ORDER BY count DESC")
+                    " GROUP BY Manufacturer.id ORDER BY count DESC")
         res = db.engine.execute(stmt)
 
         response = []
