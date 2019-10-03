@@ -5,10 +5,12 @@ Idea is, that a person can add a device to his profile, and then add certificate
 This enables for easy tracking of the certificates and possible traceability information for any and all devices.
 
 ```
-A place for people to manage electronic products they own, like adding all of their computer peripherals with their serial numbers,
-certificates (toDo) embedded, so that they have a central management endpoint where they can see what they own from a single glance.
-This can be essential for larger companies that own thousands of computers, power supplies etc - and they need one place where they 
-can see if something is in need of calibration, service or if someone has marked the equipment as broken.
+A place for people to manage electronic products they own, 
+like adding all of their computer peripherals with their serial numbers,certificates (toDo)
+so that they have a central management endpoint where they can see what they own from a single glance.
+This can be essential for larger companies that own thousands of computers, power supplies etc - 
+and they need one place where they can see if something is in need of calibration, 
+service or if someone has marked the equipment as broken.
 ```
 
 
