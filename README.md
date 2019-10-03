@@ -17,10 +17,11 @@ service or if someone has marked the equipment as broken.
 
 ### Current demo version on heroku :
 [Application demo](https://eqmanager.herokuapp.com/)
-
+```
 User information for heroku test user :
-#### username: tsohauser
-#### password: tsoha19
+  username: tsohauser
+  password: tsoha19
+```
 
 ### [Installation instructions](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/installation.md)
 
