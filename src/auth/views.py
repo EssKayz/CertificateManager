@@ -49,7 +49,7 @@ def auth_create():
     form = UserCreateForm(request.form)
     if form.validate_on_submit():
         t = User(form.name.data, form.username.data,
-                 bcrypt.generate_password_hash(form.password.data))
+                 bcrypt.generate_password_hash(form.password.data).decode('utf-8'))
         db.session().add(t)
         db.session().commit()
         return redirect(url_for("manufacturers_index"))
