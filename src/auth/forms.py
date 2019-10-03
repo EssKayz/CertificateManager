@@ -19,9 +19,12 @@ class LoginForm(FlaskForm):
 
 
 class UserCreateForm(FlaskForm):
-    name = StringField("name", [validators.Length(min=3)])
-    username = StringField("username", [validators.Length(min=4)])
-    password = PasswordField("password", [validators.Length(min=4)])
+    name = StringField("name", [validators.Length(
+        min=3, max=48, message="Name length invalid")])
+    username = StringField("username", [validators.Length(
+        min=4, max=24, message="username length invalid")])
+    password = PasswordField(
+        "password", [validators.Length(min=4, message="password too short")])
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()

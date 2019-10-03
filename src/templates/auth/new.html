@@ -8,11 +8,19 @@
   <div>
     <form method="POST" action="{{ url_for('auth_create') }}">
       {{ form.csrf }}
+      <div style="float: right;">
+        {% for error in form.username.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% for error in form.name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
       <h2>Please Sign Up</h2>
       <hr class="colorgraph" />
-      {% for error in form.username.errors %}
-      <span style="color: red;">[{{ error }}]</span>
-      {% endfor %}
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
