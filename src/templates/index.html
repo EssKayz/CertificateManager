@@ -55,29 +55,62 @@
 
   <hr class="colorgraph" />
 
-  <div class="row">
-    <ul>
-      {% for eqp in current_user.equipment %}
-      <li>
-        {{ eqp.model.name }} - {{ eqp.model.manufacturer.name }} - {{ eqp.serialnumber }}
-        {% if eqp.isbroken %} <span style="color: red; font-weight: bold;">(Broken)</span> {% endif %}
-        <form style="display:inline;" method="POST" action="{{ url_for('equipment_delete', id=eqp.id) }}">
-          <button class="btn btn-danger" type="submit"> Delete </button>
-        </form>
-        {% if eqp.isbroken %}
-        <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-          <button class="btn btn-primary" type="submit"> Mark as Fixed </button>
-        </form>
-        {% else %}
-        <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-          <button class="btn btn-warning" type="submit"> Mark as Broken </button>
-        </form>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
+  <div class="container">
+    <table id="table_id" class="table table-hover table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Serial Number</th>
+          <th>Model</th>
+          <th>Manufacturer</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eqp in current_user.equipment %}
+        <tr>
+          <td>{{ eqp.serialnumber }}</td>
+          <td>{{ eqp.model.name }}</td>
+          <td>{{ eqp.model.manufacturer.name }}</td>
+          <td>
+            {% if eqp.isbroken %}
+            <span style="color: red; font-weight: bold;">(Broken)</span>
+            {% else %}
+            <span style="color: green; font-weight: bold;">OK</span>
+            {% endif %}
+          </td>
+          <td>
+            <form style="display:inline;" method="POST" action="{{ url_for('equipment_delete', id=eqp.id) }}">
+              <button class="btn btn-danger" type="submit"> Delete </button>
+            </form>
+            {% if eqp.isbroken %}
+            <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
+              <button class="btn btn-primary" type="submit"> Mark as Fixed </button>
+            </form>
+            {% else %}
+            <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
+              <button class="btn btn-warning" type="submit"> Mark as Broken </button>
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
   {% endif %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script async defer type="text/javascript">
+  $(document).ready(function () {
+    $('#table_id').DataTable( {
+      "lengthMenu": [ 10, 25, 50, "All"  ],
+      "pageLength": 25
+    });
+  });
+</script>
 {% endblock %}
