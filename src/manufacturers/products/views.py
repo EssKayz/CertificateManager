@@ -4,20 +4,22 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required
 
 from src.manufacturers.models import Manufacturer
+from src.manufacturers.forms import ManufacturerForm
 from src.manufacturers.products.models import Model
 from src.manufacturers.products.forms import ModelForm
 
 
 @app.route("/models", methods=["GET"])
 def models_index():
-    return render_template("models/list.html", models=Model.query.all())
+    return render_template("models/list.html", models=Model.query.all(),
+                           manufExists=Manufacturer.query.count() > 0)
 
 
 @app.route("/models/new/")
 @login_required
 def models_form():
-    if Manufacturer.query.count == 0:
-        return render_template(url_for('manufacturers_form'), form=ManufacturerForm())
+    if Manufacturer.query.count() == 0:
+        return redirect(url_for('manufacturers_index'))
 
     return render_template("models/new.html", form=ModelForm())
 

@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, validators
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
+
 from src.manufacturers.models import Manufacturer
+from src.manufacturers.products.models import Model
 
 from src import db
 

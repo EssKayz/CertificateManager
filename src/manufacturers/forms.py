@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, validators
 
+from src.manufacturers.models import Manufacturer
+
 
 class ManufacturerForm(FlaskForm):
     name = StringField("Manufacturer name", [validators.Length(
