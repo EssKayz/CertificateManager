@@ -16,8 +16,9 @@
   <h4>
     Here are your current equipment!
   </h4>
+  {% if modelsExist %}
   <p><span data-feather="plus"></span><a data-toggle="collapse" href="#addForm">New equipment</a></p>
-
+  {% endif %}
   <td>
     <ul>
       {% for error in form.serialnumber.errors %}

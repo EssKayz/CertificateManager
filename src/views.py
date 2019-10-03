@@ -3,13 +3,13 @@ from flask_login import current_user, login_required
 from src import app, db
 
 from src.manufacturers.models import Manufacturer
-from src.manufacturers.products .models import Model, Equipment
+from src.manufacturers.products.models import Model, Equipment
 from src.auth.forms import EquipmentAddForm
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", form=EquipmentAddForm())
+    return render_template("index.html", modelsExist=Model.query.count() > 0, form=EquipmentAddForm())
 
 
 @app.route("/auth/addEq", methods=["POST"])
