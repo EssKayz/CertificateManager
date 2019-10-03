@@ -21,6 +21,7 @@ def equipment_add():
 
     eqpm = Equipment(form.serialnumber.data)
     eqpm.model = form.model.data
+    eqpm.isbroken = False
 
     eqpm.person_id = current_user.id
 
@@ -36,6 +37,15 @@ def equipment_delete(id):
     eqpm = Equipment.query.filter_by(id=id).first()
 
     db.session().delete(eqpm)
+    db.session().commit()
+
+    return redirect(url_for("index"))
+
+@app.route("/auth/break/<int:id>", methods=["POST"])
+@login_required
+def equipment_break(id):
+    eqpm = Equipment.query.filter_by(id=id).first()
+    eqpm.isbroken = not eqpm.isbroken
     db.session().commit()
 
     return redirect(url_for("index"))

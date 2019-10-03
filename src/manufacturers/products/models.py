@@ -31,7 +31,7 @@ class Equipment(db.Model):
     person_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
     serialnumber = db.Column(db.String(134))
     
-    
+    isbroken = db.Column(db.Boolean, nullable=False)
     model = db.relationship("Model")
 
     def __init__(self, snum):
