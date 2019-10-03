@@ -2,14 +2,23 @@
 
 {% block body %}
 <h3>Models</h3>
+{% if manufExists %}
 <p><span data-feather="plus"></span><a href="{{ url_for('models_form') }}">Add a model</a></p>
+{% else %}
+<p class="btn disabled"><span data-feather="plus"></span><a class="btn disabled" href="{{ url_for('models_form') }}">Add
+    a model</a></p>
+<p>No manufacturers exist, cannot add new models</p>
+<p><span data-feather="plus"></span><a href="{{ url_for('manufacturers_form') }}">Add a manufacturer to enable adding
+    models</a></p>
+
+{% endif %}
 {% for model in models %}
 <ul>
   <li>
     {{ model.name }} ( By : {{ model.manufacturer.name}} ) {% if model.eol %} (EOL Product) {% endif %}
-      <form method="POST" action="{{ url_for('model_setEol', model_id=model.id) }}">
-        <input type="submit" value="Retire product (Set EOL tag)" />
-      </form>
+    <form method="POST" action="{{ url_for('model_setEol', model_id=model.id) }}">
+      <input type="submit" value="Retire product (Set EOL tag)" />
+    </form>
   </li>
 </ul>
 {% endfor %}
