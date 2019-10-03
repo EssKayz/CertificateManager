@@ -6,6 +6,9 @@ from src.auth.models import User
 from src.auth.forms import LoginForm, UserCreateForm
 
 from flask_login import login_user, logout_user
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt(app)
 
 
 @app.route("/auth/login", methods=["GET", "POST"])
@@ -17,8 +20,12 @@ def auth_login():
     # mahdolliset validoinnit
 
     user = User.query.filter_by(
-        username=form.username.data, password=form.password.data).first()
+        username=form.username.data).first()
     if not user:
+        return render_template("auth/loginform.html", form=form,
+                               error="No such username or password")
+
+    if not bcrypt.check_password_hash(user.password, form.password.data):
         return render_template("auth/loginform.html", form=form,
                                error="No such username or password")
 
@@ -41,7 +48,8 @@ def auth_form():
 def auth_create():
     form = UserCreateForm(request.form)
     if form.validate_on_submit():
-        t = User(form.name.data, form.username.data, form.password.data)
+        t = User(form.name.data, form.username.data,
+                 bcrypt.generate_password_hash(form.password.data))
         db.session().add(t)
         db.session().commit()
         return redirect(url_for("manufacturers_index"))
