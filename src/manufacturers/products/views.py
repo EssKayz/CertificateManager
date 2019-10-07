@@ -11,7 +11,7 @@ from src.manufacturers.products.forms import ModelForm
 
 @app.route("/models", methods=["GET"])
 def models_index():
-    return render_template("models/list.html", models=Model.query.all(),
+    return render_template("models/list.html", models=Model.query.all(), form=ModelForm(),
                            manufExists=Manufacturer.query.count() > 0)
 
 
@@ -26,8 +26,8 @@ def models_form():
 
 @app.route("/models/<model_id>/", methods=["POST"])
 def model_setEol(model_id):
-
     m = Model.query.get(model_id)
+    
     if m.eol:
         m.eol = False
     else:
@@ -47,6 +47,7 @@ def models_create():
 
     t = Model(form.name.data)
     t.manufacturer = form.manufacturer.data
+    t.eol = False
 
     db.session().add(t)
     db.session().commit()

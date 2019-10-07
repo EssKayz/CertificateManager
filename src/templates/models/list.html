@@ -1,9 +1,48 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>Models</h3>
-{% if manufExists %}
-<p><span data-feather="plus"></span><a href="{{ url_for('models_form') }}">Add a model</a></p>
+<div class="container text-center">
+  <h3>Models</h3>
+  {% if manufExists %}
+  <p><span data-feather="plus"></span><a data-toggle="collapse" href="#addForm">Add a model</a></p>
+  <div class="collapse" id="addForm">
+    <form method="POST" action="{{ url_for('models_create') }}">
+      <table style="margin: auto; width: 50% !important;" class="table text-center">
+        <tr>
+          <td>
+            {{ form.name.label }}
+          </td>
+          <td>
+            {{ form.name }}
+          </td>
+          <td>
+            <ul>
+              {% for error in form.name.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ form.manufacturer.label}}
+          </td>
+          <td>
+            {{ form.manufacturer}}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="Add a new model" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+
+<hr />
+
 {% else %}
 <p class="btn disabled"><span data-feather="plus"></span><a class="btn disabled" href="{{ url_for('models_form') }}">Add
     a model</a></p>
