@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block head %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 <p>
   Welcome to the equipment management network.
@@ -35,7 +39,7 @@
             {{ form.model.label}}
           </td>
           <td>
-            {{ form.model }}
+            {{ form.model(class_="form-control") }}
           </td>
         </tr>
         <tr>
@@ -43,7 +47,7 @@
             {{ form.serialnumber.label}}
           </td>
           <td>
-            {{ form.serialnumber }}
+            {{ form.serialnumber(class_="form-control")}}
           </td>
         </tr>
       </table>
@@ -105,8 +109,13 @@
 
 {% block scripts %}
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script async defer type="text/javascript">
   $(document).ready(function () {
+    $("select").select2({
+      width: '100%',
+      heigth: '100%'
+    });
     $('#table_id').DataTable( {
       "lengthMenu": [ 10, 25, 50, "All"  ],
       "pageLength": 25
