@@ -55,11 +55,14 @@
   </div>
 
   <div class="row">
-    <div class="col-8">
-      <table class="table table-striped">
+    <div class="col-5">
+      <h3 style="visibility: hidden">...</h3>
+      <table class="table dtable table-striped">
         <thead>
-          <th>Manufacturer name</th>
-          <th>Products</th>
+          <tr>
+            <th>Manufacturer name</th>
+            <th>Products</th>
+          </tr>
         </thead>
         <tbody>
           {% for manufacturer in manufacturers %}
@@ -74,19 +77,21 @@
               {{ manufacturer.models|length }}
             </td>
           </tr>
-
           {% endfor %}
         </tbody>
       </table>
     </div>
-    <div class="col-4">
-      <div class="accordion" id="manufAccordion">
+    <div class="col-7">
+      <div class="accordion sticky-top" id="manufAccordion">
         {% for manufacturer in manufacturers %}
         <div class="collapse" data-parent="#manufAccordion" id="collapse-{{ manufacturer.id }}">
-          <table class="table table-striped">
+          <h3>{{ manufacturer.name }}</h3>
+          <table class="table dtable table-striped">
             <thead>
-              <th>Product name</th>
-              <th>Status</th>
+              <tr>
+                <th>Product name</th>
+                <th>Status</th>
+              </tr>
             </thead>
             <tbody>
               {% for model in manufacturer.models %}
@@ -114,4 +119,17 @@
 </div>
 
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script async defer type="text/javascript">
+  $(document).ready(function () {
+    $('.dtable').DataTable({
+      "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+      "pageLength": 25,
+      "aaSorting": []
+    });
+  });
+</script>
 {% endblock %}
