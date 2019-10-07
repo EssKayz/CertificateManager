@@ -35,21 +35,8 @@
 <hr />
 
 <div class="container">
+
   <div class="row">
-    <div class="col">
-      {% for manufacturer in manufacturers %}
-      <ul>
-        <li>
-          {{ manufacturer.name }}
-          <ul>
-            {% for model in manufacturer.models %}
-            <li>{{ model.name }}</li>
-            {% endfor %}
-          </ul>
-        </li>
-      </ul>
-      {% endfor %}
-    </div>
     <div class="col">
       {% if listeroo is defined %}
       <p>
@@ -63,8 +50,65 @@
         </li>
         {% endfor %}
       </ul>
-
       {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-striped">
+        <thead>
+          <th>Manufacturer name</th>
+          <th>Products</th>
+        </thead>
+        <tbody>
+          {% for manufacturer in manufacturers %}
+          <tr>
+            <td>
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{ manufacturer. id }}">
+                {{ manufacturer.name }}
+                <span data-feather="chevron-right"></span>
+              </button>
+            </td>
+            <td>
+              {{ manufacturer.models|length }}
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <div class="accordion" id="manufAccordion">
+        {% for manufacturer in manufacturers %}
+        <div class="collapse" data-parent="#manufAccordion" id="collapse-{{ manufacturer.id }}">
+          <table class="table table-striped">
+            <thead>
+              <th>Product name</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              {% for model in manufacturer.models %}
+              <tr>
+                <td>
+                  {{ model.name }}
+                </td>
+                <td>
+                  {% if model.eol %}
+                  <span style="color: red; font-weight: bold;">No longer produced</span>
+                  {% else %}
+                  <span style="color: green; font-weight: bold;">Actively produced</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% endfor %}
+      </div>
+
     </div>
   </div>
 </div>
