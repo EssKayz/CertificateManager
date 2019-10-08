@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from wtforms import StringField, validators, ValidationError
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src.classification.models import Classification

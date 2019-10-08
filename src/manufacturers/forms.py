@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from wtforms import StringField, validators, ValidationError
 
 from src.manufacturers.models import Manufacturer
 

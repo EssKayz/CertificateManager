@@ -9,6 +9,15 @@
   <h3>Models</h3>
   {% if manufExists %}
   <p><span data-feather="plus"></span><a data-toggle="collapse" href="#addForm">Add a model</a></p>
+
+  <div class="row justify-content-center">
+    <ul>
+      {% for error in form.name.errors %}
+      <li style="color: red;">{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
   <div class="collapse" id="addForm">
     <form method="POST" action="{{ url_for('models_create') }}">
       <table style="margin: auto; width: 50% !important;" class="table text-center">
@@ -82,8 +91,8 @@
               value="In production"><i data-feather="refresh-cw"></i></button>
             <span style="color: red; font-weight: bold;"> No longer produced</span>
             {% else %}
-            <button class="badge badge-secondary badge-pill" type="submit"
-              value="In production"><i data-feather="refresh-cw"></i></button>
+            <button class="badge badge-secondary badge-pill" type="submit" value="In production"><i
+                data-feather="refresh-cw"></i></button>
             <span style="color: green; font-weight: bold;"> In production </span>
             {% endif %}
 

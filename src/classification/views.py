@@ -27,7 +27,7 @@ def classifications_form():
 def classifications_create():
     form = ClassificationForm(request.form)
     if not form.validate():
-        return render_template(url_for('classifications_form'), form=form)
+        return render_template("classifications/list.html", form=form, addForm=EquipmentAddForm(), classifications=Classification.query.all(), productsExist=Product.query.count() > 0)
 
     t = Classification(form.name.data)
     t.description = form.description.data

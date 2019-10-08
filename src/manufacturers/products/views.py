@@ -27,7 +27,7 @@ def models_form():
 @app.route("/models/<model_id>/", methods=["POST"])
 def model_setEol(model_id):
     m = Product.query.get(model_id)
-    
+
     if m.eol:
         m.eol = False
     else:
@@ -43,7 +43,7 @@ def models_create():
     form = ModelForm(request.form)
 
     if not form.validate():
-        return render_template(url_for('models_form'), form=form)
+        return render_template("models/list.html", form=form, models=Product.query.all(), manufExists=Manufacturer.query.count() > 0)
 
     t = Product(form.name.data)
     t.manufacturer = form.manufacturer.data
