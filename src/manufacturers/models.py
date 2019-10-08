@@ -20,7 +20,7 @@ class Manufacturer(db.Model):
 
     @staticmethod
     def listByModel():
-        stmt = text("SELECT  Manufacturer.id, COUNT(Product.name) as count, Manufacturer.name FROM Manufacturer"
+        stmt = text("SELECT Manufacturer.id, COUNT(Product.name) as count, Manufacturer.name FROM Manufacturer"
                     " LEFT JOIN Product ON Manufacturer.id = Product.manufacturer_id"
                     " GROUP BY Manufacturer.id ORDER BY count DESC LIMIT 5")
         res = db.engine.execute(stmt)
