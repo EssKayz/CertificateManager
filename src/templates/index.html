@@ -85,15 +85,15 @@
           </td>
           <td>
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_delete', id=eqp.id) }}">
-              <button class="btn btn-danger" type="submit"> Delete </button>
+              <button data-toggle="tooltip" title="Delete" class="btn btn-danger" type="submit"><span data-feather="trash-2"></span></button>
             </form>
             {% if eqp.isbroken %}
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-              <button class="btn btn-primary" type="submit"> Mark as Fixed </button>
+              <button data-toggle="tooltip" title="Mark as fixed" class="btn btn-primary" type="submit"><span data-feather="tool"></span> </button>
             </form>
             {% else %}
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-              <button class="btn btn-warning" type="submit"> Mark as Broken </button>
+              <button data-toggle="tooltip" title="Mark as broken" class="btn btn-warning" type="submit"> <span data-feather="alert-triangle"> </button>
             </form>
             {% endif %}
           </td>
