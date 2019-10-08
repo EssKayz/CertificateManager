@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block head %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 <div class="container text-center">
   <h3>Models</h3>
@@ -61,4 +65,16 @@
   </li>
 </ul>
 {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script async defer type="text/javascript">
+  $(document).ready(function () {
+    $("select").select2({
+      width: '100%',
+      heigth: '100%'
+    });
+  });
+</script>
 {% endblock %}
