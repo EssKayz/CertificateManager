@@ -55,26 +55,60 @@
     models</a></p>
 
 {% endif %}
-{% for model in models %}
-<ul>
-  <li>
-    {{ model.name }} ( By : {{ model.manufacturer.name}} ) {% if model.eol %} (EOL Product) {% endif %}
-    <form method="POST" action="{{ url_for('model_setEol', model_id=model.id) }}">
-      <input type="submit" value="Retire product (Set EOL tag)" />
-    </form>
-  </li>
-</ul>
-{% endfor %}
+
+<div class="container">
+  <table class="table dtable">
+    <thead>
+      <tr>
+        <th>Model name</th>
+        <th>Manufacturer</th>
+        <th>Production status</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      {% for model in models %}
+      <tr>
+        <td>
+          {{ model.name }}
+        </td>
+        <td>
+          {{ model.manufacturer.name }}
+        </td>
+        <td>
+          <form method="POST" action="{{ url_for('model_setEol', model_id=model.id) }}">
+            {% if model.eol %}
+            <button style="opacity: 0.4;" class="badge badge-secondary badge-pill" type="submit"
+              value="In production"><i data-feather="refresh-cw"></i></button>
+            <span style="color: red; font-weight: bold;"> No longer produced</span>
+            {% else %}
+            <button class="badge badge-secondary badge-pill" type="submit"
+              value="In production"><i data-feather="refresh-cw"></i></button>
+            <span style="color: green; font-weight: bold;"> In production </span>
+            {% endif %}
+
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script async defer type="text/javascript">
   $(document).ready(function () {
     $("select").select2({
       width: '100%',
       heigth: '100%'
     });
+  });
+  $('.dtable').DataTable({
+    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    "pageLength": 25
   });
 </script>
 {% endblock %}
