@@ -60,7 +60,7 @@
   <hr class="colorgraph" />
 
   <div class="container">
-    <table id="table_id" class="table table-hover table-striped table-sm">
+    <table id="table_id" class="table table-striped table-dark table-sm">
       <thead>
         <tr>
           <th>Serial Number</th>
@@ -89,7 +89,7 @@
             </form>
             {% if eqp.isbroken %}
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-              <button data-toggle="tooltip" title="Mark as fixed" class="btn btn-primary" type="submit"><span data-feather="tool"></span> </button>
+              <button data-toggle="tooltip" title="Mark as fixed" class="btn btn-success" type="submit"><span data-feather="tool"></span> </button>
             </form>
             {% else %}
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">

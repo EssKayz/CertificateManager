@@ -57,7 +57,7 @@
   <div class="row">
     <div class="col-5">
       <h3 style="visibility: hidden">...</h3>
-      <table class="table dtable table-striped">
+      <table class="table dtable table-striped table-dark ">
         <thead>
           <tr>
             <th>Manufacturer name</th>
@@ -69,8 +69,10 @@
           <tr>
             <td>
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{ manufacturer. id }}">
-                {{ manufacturer.name }}
-                <span data-feather="chevron-right"></span>
+                <span class="text-light">
+                  {{ manufacturer.name }}
+                </span>
+                <span class="text-light" data-feather="chevron-right"></span>
               </button>
             </td>
             <td>
@@ -86,7 +88,7 @@
         {% for manufacturer in manufacturers %}
         <div class="collapse" data-parent="#manufAccordion" id="collapse-{{ manufacturer.id }}">
           <h3>{{ manufacturer.name }}</h3>
-          <table class="table dtable table-striped">
+          <table class="table dtable table-striped table-dark ">
             <thead>
               <tr>
                 <th>Product name</th>
