@@ -6,7 +6,7 @@ ClassificationProduct = db.Table('ClassificationProduct',
                                  db.Column('classification_id', db.Integer,
                                            db.ForeignKey('Classification.id')),
                                  db.Column('product_id', db.Integer,
-                                           db.ForeignKey('Product.id'))
+                                           db.ForeignKey('product.id'))
                                  )
 
 

@@ -3,7 +3,7 @@ from src.classification.models import ClassificationProduct
 
 
 class Product(db.Model):
-    __tablename__ = 'Product'
+    __tablename__ = 'product'
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
@@ -36,7 +36,7 @@ class Equipment(db.Model):
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
                               onupdate=db.func.current_timestamp())
 
-    model_id = db.Column(db.Integer, db.ForeignKey('Product.id'), nullable=False)
+    model_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     person_id = db.Column(db.Integer, db.ForeignKey(
         'account.id'), nullable=False)
     serialnumber = db.Column(db.String(134))
