@@ -5,13 +5,13 @@ from flask_login import login_required
 
 from src.manufacturers.models import Manufacturer
 from src.manufacturers.forms import ManufacturerForm
-from src.manufacturers.products.models import Model
+from src.manufacturers.products.models import Product
 from src.manufacturers.products.forms import ModelForm
 
 
 @app.route("/models", methods=["GET"])
 def models_index():
-    return render_template("models/list.html", models=Model.query.all(), form=ModelForm(),
+    return render_template("models/list.html", models=Product.query.all(), form=ModelForm(),
                            manufExists=Manufacturer.query.count() > 0)
 
 
@@ -26,7 +26,7 @@ def models_form():
 
 @app.route("/models/<model_id>/", methods=["POST"])
 def model_setEol(model_id):
-    m = Model.query.get(model_id)
+    m = Product.query.get(model_id)
     
     if m.eol:
         m.eol = False
@@ -45,7 +45,7 @@ def models_create():
     if not form.validate():
         return render_template(url_for('models_form'), form=form)
 
-    t = Model(form.name.data)
+    t = Product(form.name.data)
     t.manufacturer = form.manufacturer.data
     t.eol = False
 

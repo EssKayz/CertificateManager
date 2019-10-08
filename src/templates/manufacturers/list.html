@@ -34,7 +34,7 @@
 
 <hr />
 
-<div class="container">
+<div class="container-fluid" style="width: 75%">
 
   <div class="row">
     <div class="col">
@@ -55,7 +55,7 @@
   </div>
 
   <div class="row">
-    <div class="col-5">
+    <div class="col-4">
       <h3 style="visibility: hidden">...</h3>
       <table class="table dtable table-striped table-dark ">
         <thead>
@@ -83,7 +83,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-7">
+    <div class="col-8">
       <div class="accordion sticky-top" id="manufAccordion">
         {% for manufacturer in manufacturers %}
         <div class="collapse" data-parent="#manufAccordion" id="collapse-{{ manufacturer.id }}">
@@ -93,6 +93,7 @@
               <tr>
                 <th>Product name</th>
                 <th>Status</th>
+                <th>Classifications</th>
               </tr>
             </thead>
             <tbody>
@@ -107,6 +108,9 @@
                   {% else %}
                   <span style="color: green; font-weight: bold;">Actively produced</span>
                   {% endif %}
+                </td>
+                <td>
+                  {{ model.classifications.count() }}
                 </td>
               </tr>
               {% endfor %}

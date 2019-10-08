@@ -10,7 +10,7 @@ class Manufacturer(db.Model):
                               onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(144), nullable=False)
-    models = db.relationship('Model', backref='manufacturer', lazy=True)
+    models = db.relationship('Product', backref='manufacturer', lazy=True)
 
     def __init__(self, name):
         self.name = name
@@ -20,8 +20,8 @@ class Manufacturer(db.Model):
 
     @staticmethod
     def listByModel():
-        stmt = text("SELECT  Manufacturer.id, COUNT(Model.name) as count, Manufacturer.name FROM Manufacturer "
-                    " LEFT JOIN Model ON Manufacturer.id = Model.manufacturer_id"
+        stmt = text("SELECT  Manufacturer.id, COUNT(Product.name) as count, Manufacturer.name FROM Manufacturer "
+                    " LEFT JOIN Product ON Manufacturer.id = Product.manufacturer_id"
                     " GROUP BY Manufacturer.id ORDER BY count DESC LIMIT 5")
         res = db.engine.execute(stmt)
 

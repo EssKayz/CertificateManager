@@ -3,7 +3,7 @@ from wtforms import StringField, validators
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src.manufacturers.models import Manufacturer
-from src.manufacturers.products.models import Model
+from src.manufacturers.products.models import Product
 
 from src import db
 
@@ -18,7 +18,7 @@ class ModelForm(FlaskForm):
                                     )
 
     def validate_name(self, name):
-        name = Model.query.filter_by(
+        name = Product.query.filter_by(
             name=name.data).first()
         if name is not None:
             raise ValidationError('Model name already used')
