@@ -30,8 +30,6 @@ You can then select the manufacturer by clicking the dropdown found at the red c
 ### Classifications tab
 Here you can manage different classifications, like C-Ex, IP68 or other IP ratings etc
 and also add products to said ratings. This will add the product to the rating, and also the rating to the product.
-![ClassificationView](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/Images/classifications.PNG)
-![ClassifAdding](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/Images/addclassif.PNG)
-![AddProdClassif](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/Images/addprodtoclassif.PNG)
+[Classification usage](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/classification.md)
 
 
