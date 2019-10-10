@@ -50,7 +50,7 @@ class Product(db.Model):
                         "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
                         "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) "
                         "FROM product WHERE (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
-                        "NULLIF( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id ), 0) IS NOT NULL GROUP BY product.id ORDER BY (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
+                        "NULLIF( (SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) , 0) IS NOT NULL GROUP BY product.id ORDER BY (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
                         "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) asc LIMIT 10"
                         )
 
