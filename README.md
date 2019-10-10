@@ -13,6 +13,8 @@ and they need one place where they can see if something is in need of calibratio
 service or if someone has marked the equipment as broken.
 ```
 
+Example :
+![ExampleImage](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/images/example.PNG)
 
 
 ### Current demo version on heroku :
