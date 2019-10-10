@@ -13,10 +13,33 @@
 - [x] Anyone can view a list of device manufacturers (Samsung, SteelSeries, Apple)
 - [x] Anyone can view a list of models/products made by each manufacturer
 - [x] Anyone can see the top 5 manufacturers with the most products/models
+```
+ SELECT Manufacturer.id, COUNT(Product.name) as count, Manufacturer.name FROM Manufacturer, Product
+ WHERE Manufacturer.id = Product.manufacturer_id 
+ GROUP BY Manufacturer.id 
+ ORDER BY count DESC 
+ LIMIT 5
+```
 - [x] Users can add a new device manufacturer to the list (Samsung)
 
 # Models
 - [x] Anyone can view a top-10 list of the least prone to breaking models
+```
+SELECT product.id, 
+       product.name, 
+       (SELECT 100.0 * (SELECT Count(*) 
+                        FROM   equipment 
+                        WHERE  equipment.model_id = product.id 
+                               AND equipment.isbroken) / (SELECT Count(*) 
+                                                          FROM   equipment 
+                                                          WHERE equipment.model_id = product.id)) 
+		AS brokenavg 
+FROM   product 
+WHERE  brokenavg IS NOT NULL 
+GROUP  BY product.id 
+ORDER  BY brokenavg ASC 
+LIMIT  10 
+```
 - [x] Anyone can view all existing models
 - [x] Users can add a new equipment model under a manufacturer (Galaxy S7, by Samsung)
 - [x] Users can mark a model as EOL (Product is no longer manufactured / End Of Life)
