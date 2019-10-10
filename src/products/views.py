@@ -25,6 +25,7 @@ def models_form():
 
 
 @app.route("/models/<model_id>/", methods=["POST"])
+@login_required
 def model_setEol(model_id):
     m = Product.query.get(model_id)
 

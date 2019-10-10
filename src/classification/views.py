@@ -24,6 +24,7 @@ def classifications_form():
 
 
 @app.route("/classifications/<classification_id>/delete", methods=["POST"])
+@login_required
 def classification_delete(classification_id):
     classif = Classification.query.get(classification_id)
     classif.products = []
@@ -34,6 +35,7 @@ def classification_delete(classification_id):
 
 
 @app.route("/classifications/<classification_id>/", methods=["POST"])
+@login_required
 def classification_editdesc(classification_id):
     form = ClassificationForm(request.form)
     classif = Classification.query.get(classification_id)
@@ -58,7 +60,7 @@ def classifications_create():
 
 
 @app.route("/classifications/add/<class_id>", methods=["POST"])
-# @login_required
+@login_required
 def classifications_link(class_id):
     form = EquipmentAddForm(request.form)
     if not form.validate():
@@ -67,11 +69,7 @@ def classifications_link(class_id):
     classif = Classification.query.get(class_id)
     data = form.model.data
     product = Product.query.filter(Product.name == str(data)).first()
-
-    print('-------')
-    print(product)
-    print('-------')
-
+    
     classif.add_product(product)
     db.session.commit()
     return redirect(url_for("classifications_index"))
