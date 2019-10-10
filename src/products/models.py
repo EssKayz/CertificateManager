@@ -33,8 +33,8 @@ class Product(db.Model):
     @staticmethod
     def listByBrokenPercent():
         stmt = text("SELECT product.id, product.name, "
-                    "100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
-                    "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) as brokenavg "
+                    "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
+                    "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) as brokenavg "
                     "FROM product WHERE brokenavg IS NOT NULL GROUP BY product.id ORDER BY brokenavg asc LIMIT 10"
                     )
 
