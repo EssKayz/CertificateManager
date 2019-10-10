@@ -5,8 +5,8 @@ from flask_login import login_required
 
 from src.manufacturers.models import Manufacturer
 from src.manufacturers.forms import ManufacturerForm
-from src.manufacturers.products.models import Product
-from src.manufacturers.products.forms import ModelForm
+from src.products.models import Product
+from src.products.forms import ModelForm
 
 
 @app.route("/models", methods=["GET"])

@@ -17,12 +17,12 @@ db = SQLAlchemy(app)
 #Import views
 from src import views
 from src.manufacturers import views
-from src.manufacturers.products import views
+from src.products import views
 from src.classification import views
 
 #Import database models
 from src.manufacturers import models
-from src.manufacturers.products import models
+from src.products import models
 from src.classification import models
 
 #Import user auth

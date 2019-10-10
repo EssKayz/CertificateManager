@@ -3,7 +3,7 @@ from wtforms import StringField, validators, ValidationError
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src.classification.models import Classification
-from src.manufacturers.products.models import Product
+from src.products.models import Product
 
 
 class ClassificationForm(FlaskForm):

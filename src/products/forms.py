@@ -3,7 +3,7 @@ from wtforms import StringField, validators, ValidationError
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src.manufacturers.models import Manufacturer
-from src.manufacturers.products.models import Product
+from src.products.models import Product
 
 from src import db
 

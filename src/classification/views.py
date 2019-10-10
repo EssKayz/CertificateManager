@@ -5,7 +5,7 @@ from flask_login import login_required
 
 from src.classification.models import Classification
 from src.classification.forms import ClassificationForm, EquipmentAddForm
-from src.manufacturers.products.models import Product
+from src.products.models import Product
 
 import string
 

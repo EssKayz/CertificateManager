@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from src import app, db
 
 from src.manufacturers.models import Manufacturer
-from src.manufacturers.products.models import Product, Equipment
+from src.products.models import Product, Equipment
 from src.auth.forms import EquipmentAddForm
 
 

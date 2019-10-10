@@ -5,7 +5,7 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from src import db
 from src.auth.models import User
 from src.manufacturers.models import Manufacturer
-from src.manufacturers.products.models import Product, Equipment
+from src.products.models import Product, Equipment
 
 import sys
 
