@@ -13,18 +13,20 @@ bcrypt = Bcrypt(app)
 
 @app.route("/auth/login", methods=["GET", "POST"])
 def auth_login():
+    #If GET request, redirect to the loginform
     if request.method == "GET":
         return render_template("auth/loginform.html", form=LoginForm())
 
+    #Otherwise, proceed with logging in
     form = LoginForm(request.form)
-    # mahdolliset validoinnit
-
     user = User.query.filter_by(
         username=form.username.data).first()
+    #Check if user exists with name
     if not user:
         return render_template("auth/loginform.html", form=form,
                                error="No such username or password")
 
+    #If username exists, check if password exists
     if not bcrypt.check_password_hash(user.password, form.password.data):
         return render_template("auth/loginform.html", form=form,
                                error="No such username or password")

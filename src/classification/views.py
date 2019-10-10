@@ -27,8 +27,10 @@ def classifications_form():
 @login_required
 def classification_delete(classification_id):
     classif = Classification.query.get(classification_id)
+    # Clear the list of products from classification's list of products
     classif.products = []
     db.session().commit()
+    #Then delete the classification
     db.session().delete(classif)
     db.session().commit()
     return redirect(url_for("classifications_index"))
