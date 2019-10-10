@@ -7,6 +7,7 @@
 {% block body %}
 <div class="container text-center">
   <h3>Models</h3>
+  {% if current_user.is_authenticated %}
   {% if manufExists %}
   <p><span data-feather="plus"></span><a data-toggle="collapse" href="#addForm">Add a model</a></p>
 
@@ -63,6 +64,11 @@
 <p><span data-feather="plus"></span><a href="{{ url_for('manufacturers_form') }}">Add a manufacturer to enable adding
     models</a></p>
 
+{% endif %}
+{% else %}
+<p class="btn disabled">
+  <span data-feather="plus"></span><span class="btn disabled"> Login to add models </span>
+</p>
 {% endif %}
 
 <div class="container">

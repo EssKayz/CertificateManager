@@ -3,7 +3,13 @@
 {% block body %}
 <div class="container text-center">
   <h3>Manufacturers</h3>
+  {% if current_user.is_authenticated %}
   <p><span data-feather="plus"></span><a data-toggle="collapse" href="#addForm">Add a manufacturer</a></p>
+  {% else %}
+  <p class="btn disabled">
+    <span data-feather="plus"></span><span class="btn disabled"> Login to add manufacturer </span>
+  </p>
+  {% endif %}
   <div class="row justify-content-center">
     <ul>
       {% for error in form.name.errors %}
