@@ -9,6 +9,7 @@ from src.products.models import Product
 
 import string
 
+
 @app.route("/classifications", methods=["GET"])
 def classifications_index():
     return render_template("classifications/list.html",
@@ -20,6 +21,25 @@ def classifications_index():
 @login_required
 def classifications_form():
     return render_template("classifications/new.html", form=ClassificationForm())
+
+
+@app.route("/classifications/<classification_id>/delete", methods=["POST"])
+def classification_delete(classification_id):
+    classif = Classification.query.get(classification_id)
+    classif.products = []
+    db.session().commit()
+    db.session().delete(classif)
+    db.session().commit()
+    return redirect(url_for("classifications_index"))
+
+
+@app.route("/classifications/<classification_id>/", methods=["POST"])
+def classification_editdesc(classification_id):
+    form = ClassificationForm(request.form)
+    classif = Classification.query.get(classification_id)
+    classif.description = form.description.data
+    db.session().commit()
+    return redirect(url_for('classifications_index'))
 
 
 @app.route("/classifications/", methods=["POST"])
@@ -46,7 +66,7 @@ def classifications_link(class_id):
 
     classif = Classification.query.get(class_id)
     data = form.model.data
-    product = Product.query.filter(Product.name==str(data)).first()
+    product = Product.query.filter(Product.name == str(data)).first()
 
     print('-------')
     print(product)

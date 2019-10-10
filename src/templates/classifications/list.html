@@ -88,8 +88,35 @@
       <div class="accordion sticky-top" id="manufAccordion">
         {% for classification in classifications %}
         <div class="collapse" data-parent="#manufAccordion" id="collapse-{{ classification.id }}">
-          <h3>{{ classification.name }}</h3><span style="font-style: italic;">" {{ classification.description }}
-            "</span>
+          <div class="row">
+            <div class="col">
+              <h3>{{ classification.name }}</h3>
+              <span style="font-style: italic;">" {{ classification.description }}"</span>
+              <button class="badge badge-primary badge-pill" data-toggle="collapse" href="#edit-{{classification.id}}">
+                <i data-feather="edit"></i></button>
+              <div class="collapse" id="edit-{{ classification.id }}">
+                <div class="container">
+                  <form method="POST"
+                    action="{{ url_for('classification_editdesc', classification_id=classification.id) }}">
+                    <input id="description" name="description" value="{{ classification.description }}" class="form-control" maxlength="144" required>
+                    
+                    </input>
+                    <button class="btn btn-primary" type="submit"> Save </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <form method="POST" action="{{ url_for('classification_delete', classification_id=classification.id)}}">
+                <button type="submit" class="badge badge-danger badge-pill" style="border:transparent !important">
+                  Delete<i data-feather="trash-2"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+
+
           {% if productsExist %}
           <p><span data-feather="plus"></span><a data-toggle="collapse" href="#addProductForm">Add a product</a></p>
           <div class="collapse" id="addProductForm">
