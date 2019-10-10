@@ -47,11 +47,12 @@ class Product(db.Model):
         else:
             # Add bunch of bubbleghum for heroku psql...
             stmt = text("SELECT product.id, product.name, "
-                        "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
-                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) "
-                        "FROM product WHERE (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
-                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) IS NOT NULL GROUP BY product.id ORDER BY (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
-                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) asc LIMIT 10"
+                        "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) "
+                        " / NULLIF(( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id), 0) ) "
+                        " FROM product WHERE (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) "
+                        " / NULLIF(( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id), 0) ) "
+                        "IS NOT NULL GROUP BY product.id ORDER BY (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) "
+                        "/ NULLIF(( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id), 0) ) asc LIMIT 10"
                         )
 
         res = db.engine.execute(stmt)
