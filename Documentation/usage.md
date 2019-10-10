@@ -18,11 +18,11 @@ Also shows a list with the top manufacturers sorted by amount of products.
 
 ### Models tab
 View models, add new models - and retire product lines.
-```
-Navigate to /models by clicking the Models tab, then "Add model" and fill in the model name.
-You can then select the manufacturer by clicking the dropdown found at the red circle, and add the model by clicking on the adding button 
-```
 ![ModelsView](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/Images/models.PNG)
+
+To add a new model:
+Navigate to /models by clicking the Models tab, then "Add model" and fill in the model name.
+You can then select the manufacturer by clicking the dropdown, and add the model by clicking on the adding button 
 ![ModelsAdding](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/Images/addmodel.PNG)
 
 
