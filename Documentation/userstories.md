@@ -10,21 +10,21 @@
 - [x] Users can delete equipment from their own list
 
 # Manufacturers
-- [x] It is possible to view a list of device manufacturers (Samsung, SteelSeries, Apple)
-- [x] It is possible to add a new device manufacturer to the list (Samsung)
-- [x] It is possible to view a list of models/products made by each manufacturer
-- [x] Users can see the top 5 manufacturers with the most products/models
+- [x] Anyone can view a list of device manufacturers (Samsung, SteelSeries, Apple)
+- [x] Anyone can view a list of models/products made by each manufacturer
+- [x] Anyone can see the top 5 manufacturers with the most products/models
+- [x] Users can add a new device manufacturer to the list (Samsung)
 
 # Models
-- [x] It is possible to add a new equipment model under a manufacturer (Galaxy S7, by Samsung)
-- [x] It is possible to view a top-10 list of the least prone to breaking models
-- [x] It is possible to view all existing models
-- [x] It is possible to mark a model as EOL (Product is no longer manufactured / End Of Life)
+- [x] Anyone can view a top-10 list of the least prone to breaking models
+- [x] Anyone can view all existing models
+- [x] Users can add a new equipment model under a manufacturer (Galaxy S7, by Samsung)
+- [x] Users can mark a model as EOL (Product is no longer manufactured / End Of Life)
 
 
 # Classifications
+- [x] Anyone can view all existing classifications, and see which products are linked to them
 - [x] Users can add new classifications with a description
-- [x] Users can view all existing classifications, and see which products are linked to them
 - [x] Users can edit the descriptions of the classifications
 - [x] Users can delete classifications without deleting linked products
 - [x] Users can add classifications to products (Samsung Galaxy S7 has the classification rating "IP68")
