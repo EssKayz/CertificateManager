@@ -12,7 +12,7 @@ from src.products.forms import ModelForm
 @app.route("/models", methods=["GET"])
 def models_index():
     return render_template("models/list.html", models=Product.query.all(), form=ModelForm(),
-                           manufExists=Manufacturer.query.count() > 0)
+                           manufExists=Manufacturer.query.count() > 0, listeroo=Product.listByBrokenPercent() )
 
 
 @app.route("/models/new/")
@@ -43,7 +43,7 @@ def models_create():
     form = ModelForm(request.form)
 
     if not form.validate():
-        return render_template("models/list.html", form=form, models=Product.query.all(), manufExists=Manufacturer.query.count() > 0)
+        return render_template("models/list.html", form=form, models=Product.query.all(), manufExists=Manufacturer.query.count() > 0, listeroo=Product.listByBrokenPercent())
 
     t = Product(form.name.data)
     t.manufacturer = form.manufacturer.data
