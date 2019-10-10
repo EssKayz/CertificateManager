@@ -60,7 +60,7 @@ class Product(db.Model):
         response = []
         for row in res:
             response.append(
-                {"id": row[0], "name": row[1], "brokenAvg": row[2]})
+                {"id": row[0], "name": row[1], "brokenAvg": round(row[2], 3)})
         return response
 
 
