@@ -1,3 +1,4 @@
+import os
 from src import db
 from src.classification.models import ClassificationProduct
 
@@ -32,11 +33,26 @@ class Product(db.Model):
 
     @staticmethod
     def listByBrokenPercent():
-        stmt = text("SELECT product.id, product.name, "
-                    "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
-                    "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) as brokenavg "
-                    "FROM product GROUP BY product.id HAVING brokenavg IS NOT NULL ORDER BY brokenavg asc LIMIT 10"
-                    )
+        on_heroku = False
+        if 'DYNO' in os.environ:
+            on_heroku = True
+
+        if not on_heroku:
+            # This line works both locally, and using mssql - for some reason psql on heroku does not approve
+            stmt = text("SELECT product.id, product.name, "
+                        "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
+                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) as brokenavg "
+                        "FROM product WHERE brokenavg IS NOT NULL GROUP BY product.id ORDER BY brokenavg asc LIMIT 10"
+                        )
+        else:
+            # Add bunch of bubbleghum for heroku psql...
+            stmt = text("SELECT product.id, product.name, "
+                        "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
+                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) "
+                        "FROM product WHERE (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
+                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) IS NOT NULL GROUP BY product.id ORDER BY (SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
+                        "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) asc LIMIT 10"
+                        )
 
         res = db.engine.execute(stmt)
 
