@@ -52,5 +52,5 @@ def auth_create():
                  bcrypt.generate_password_hash(form.password.data).decode('utf-8'))
         db.session().add(t)
         db.session().commit()
-        return redirect(url_for("manufacturers_index"))
+        return redirect(url_for("auth_login"))
     return render_template('auth/new.html', form=form)
