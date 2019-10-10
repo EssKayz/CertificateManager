@@ -32,4 +32,5 @@ User information for heroku test user :
 ### [User stories](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/userstories.md)
 
 Some idea of the schema (Will be simplified for this project, but that is something along what it's going to be eventually (possibly after the course)) :
+### [Table creation commands](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/createtables.md)
 ![DatabaseModel](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/cman.PNG)
