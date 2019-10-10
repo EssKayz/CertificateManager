@@ -17,6 +17,7 @@
 
 # Models
 - [x] It is possible to add a new equipment model under a manufacturer (Galaxy S7, by Samsung)
+- [x] It is possible to view a top-10 list of the least prone to breaking models
 - [x] It is possible to view all existing models
 - [x] It is possible to mark a model as EOL (Product is no longer manufactured / End Of Life)
 
@@ -29,7 +30,7 @@
 - [x] Users can add classifications to products (Samsung Galaxy S7 has the classification rating "IP68")
 
 
-Stuff that will be implemented post-course / is not relevant for intents of the course
+## Stuff that will be implemented post-course / is not relevant for intents of the course
 - [ ] Users can add certificates to their own equipment.
 - [ ] Users can set certificate lifespan (How long certificate is valid)
 - [ ] Users can view their certificates on one list, and sort them by next-to-expire
