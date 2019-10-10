@@ -35,7 +35,7 @@ class Product(db.Model):
         stmt = text("SELECT product.id, product.name, "
                     "(SELECT 100.0 * ( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id AND equipment.isbroken) / "
                     "( SELECT COUNT(*) FROM equipment WHERE equipment.model_id = product.id) ) as brokenavg "
-                    "FROM product WHERE brokenavg IS NOT NULL GROUP BY product.id ORDER BY brokenavg asc LIMIT 10"
+                    "FROM product GROUP BY product.id HAVING brokenavg IS NOT NULL ORDER BY brokenavg asc LIMIT 10"
                     )
 
         res = db.engine.execute(stmt)
