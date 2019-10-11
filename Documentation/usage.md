@@ -30,6 +30,7 @@ You can then select the manufacturer by clicking the dropdown, and add the model
 ### Classifications tab
 Here you can manage different classifications, like C-Ex, IP68 or other IP ratings etc
 and also add products to said ratings. This will add the product to the rating, and also the rating to the product.
-[Classification usage](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/classification.md)
+
+### [Classification usage](https://github.com/EssKayz/CertificateManager/blob/master/Documentation/classification.md)
 
 
