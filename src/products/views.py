@@ -4,7 +4,6 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required
 
 from src.manufacturers.models import Manufacturer
-from src.manufacturers.forms import ManufacturerForm
 from src.products.models import Product
 from src.products.forms import ModelForm
 

@@ -62,26 +62,3 @@ class Product(db.Model):
             response.append(
                 {"id": row[0], "name": row[1], "brokenAvg": round(row[2], 3)})
         return response
-
-
-class Equipment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    __tablename__ = "equipment"
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
-
-    model_id = db.Column(db.Integer, db.ForeignKey(
-        'product.id'), nullable=False)
-    person_id = db.Column(db.Integer, db.ForeignKey(
-        'account.id'), nullable=False)
-    serialnumber = db.Column(db.String(134))
-
-    isbroken = db.Column(db.Boolean, nullable=False)
-    model = db.relationship("Product")
-
-    def __init__(self, snum):
-        self.serialnumber = snum
-
-    def get_id(self):
-        return self.id

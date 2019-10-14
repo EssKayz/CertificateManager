@@ -19,11 +19,13 @@ from src import views
 from src.manufacturers import views
 from src.products import views
 from src.classification import views
+from src.equipment import views
 
 #Import database models
 from src.manufacturers import models
 from src.products import models
 from src.classification import models
+from src.equipment import models
 
 #Import user auth
 from src.auth import models

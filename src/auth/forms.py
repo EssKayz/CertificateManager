@@ -5,9 +5,6 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src import db
 from src.auth.models import User
-from src.manufacturers.models import Manufacturer
-from src.products.models import Product, Equipment
-
 import sys
 
 
@@ -33,24 +30,6 @@ class UserCreateForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Please use a different username.')
-
-    class Meta:
-        csrf = False
-
-
-class EquipmentAddForm(FlaskForm):
-    model = QuerySelectField(label="Model",
-                             get_label='name',
-                             query_factory=lambda: Product.query.all(),
-                             blank_text=u'Select a model...'
-                             )
-    serialnumber = StringField("Serial Number",  [ DataRequired() ])
-
-    def validate_serialnumber(self, serialnumber):
-        serialnumber = Equipment.query.filter_by(
-            serialnumber=serialnumber.data).first()
-        if serialnumber is not None:
-            raise ValidationError('Serialnumber already used')
 
     class Meta:
         csrf = False
