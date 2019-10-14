@@ -4,7 +4,7 @@
 {{ error }}
 <link rel="stylesheet" href="{{ url_for('static', filename='signin.css') }}">
 <form class="form-signin center" method="POST" action="{{ url_for('auth_login') }}">
-      {{ form.csrf }}
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <h1 class="h3 mb-3 font-weight-normal"
             style="background-color: rgba(255,255,255, 0.8); border-radius: 12px; padding: 5px 20px">Please sign in</h1>
       <label for="inputUserName" class="sr-only">Username</label>

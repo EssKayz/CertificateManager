@@ -21,6 +21,7 @@
 
   <div class="collapse" id="addForm">
     <form method="POST" action="{{ url_for('models_create') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <table style="margin: auto; width: 50% !important;" class="table text-center">
         <tr>
           <td>
@@ -115,6 +116,7 @@
         </td>
         <td>
           <form method="POST" action="{{ url_for('model_setEol', model_id=model.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             {% if model.eol %}
             <button style="opacity: 0.4;" class="badge badge-secondary badge-pill" type="submit"
               value="In production"><i data-feather="refresh-cw"></i></button>

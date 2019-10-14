@@ -21,6 +21,3 @@ class EquipmentAddForm(FlaskForm):
             serialnumber=serialnumber.data).first()
         if serialnumber is not None:
             raise ValidationError('Serialnumber already used')
-
-    class Meta:
-        csrf = False

@@ -12,9 +12,6 @@ class LoginForm(FlaskForm):
     username = StringField("Username")
     password = PasswordField("Password")
 
-    class Meta:
-        csrf = False
-
 
 class UserCreateForm(FlaskForm):
     name = StringField("name", [
@@ -30,6 +27,3 @@ class UserCreateForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Please use a different username.')
-
-    class Meta:
-        csrf = False

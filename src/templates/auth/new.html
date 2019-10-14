@@ -7,7 +7,7 @@
   style="background-color: rgba(255,255,255, 0.8); width: 45%; border-radius: 12px; padding: 5px 20px">
   <div>
     <form method="POST" action="{{ url_for('auth_create') }}">
-      {{ form.csrf }}
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <div style="float: right;">
         {% for error in form.username.errors %}
         <span style="color: red;">[{{ error }}]</span>
@@ -84,8 +84,7 @@
 <!--/.container -->
 
 <!-- Modal -->
-<div class="modal fade" id="t_and_c" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="t_and_c" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">

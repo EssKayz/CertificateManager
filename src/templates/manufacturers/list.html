@@ -20,6 +20,7 @@
 
   <div class="collapse" id="addForm">
     <form method="POST" action="{{ url_for('manufacturers_index') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <table style="margin: auto; width: 50% !important;" class="table text-center">
         <tr>
           <td>

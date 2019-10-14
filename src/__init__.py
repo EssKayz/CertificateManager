@@ -1,6 +1,10 @@
 from flask import Flask
-app = Flask(__name__)
+from flask_wtf.csrf import CSRFProtect
 
+csrf = CSRFProtect()
+
+app = Flask(__name__)
+csrf.init_app(app)
 
 #Import sqlalchemy
 from flask_sqlalchemy import SQLAlchemy

@@ -23,6 +23,3 @@ class ModelForm(FlaskForm):
             name=name.data).first()
         if name is not None:
             raise ValidationError('Model name already used')
-
-    class Meta:
-        csrf = False

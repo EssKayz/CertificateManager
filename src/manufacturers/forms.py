@@ -14,6 +14,3 @@ class ManufacturerForm(FlaskForm):
             name=name.data).first()
         if name is not None:
             raise ValidationError('Manufacturer name already used')
-
-    class Meta:
-        csrf = False

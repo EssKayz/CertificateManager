@@ -12,16 +12,13 @@ class ClassificationForm(FlaskForm):
         min=2, max=24, message="Name length invalid"), DataRequired()])
 
     description = StringField("Description of classification", [validators.Length(
-        min=2, max=72, message="Description length invalid"),  DataRequired() ])
+        min=2, max=72, message="Description length invalid"),  DataRequired()])
 
     def validate_name(self, name):
         name = Classification.query.filter_by(
             name=name.data).first()
         if name is not None:
             raise ValidationError('Classification name already used')
-
-    class Meta:
-        csrf = False
 
 
 class EquipmentAddForm(FlaskForm):
@@ -36,6 +33,3 @@ class EquipmentAddForm(FlaskForm):
             model=model.data).first()
         if model is not None:
             raise ValidationError('Model already added')
-
-    class Meta:
-        csrf = False

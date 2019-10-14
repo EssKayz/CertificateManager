@@ -2,6 +2,7 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('classifications_create') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <table>
     <tr>
       <td>

@@ -33,6 +33,7 @@
 
   <div class="collapse" id="addForm">
     <form method="POST" action="{{ url_for('equipment_add') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <table class="table text-center" style="margin: auto; width: 35% !important;">
         <tr>
           <td>
@@ -85,15 +86,21 @@
           </td>
           <td>
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_delete', id=eqp.id) }}">
-              <button data-toggle="tooltip" title="Delete" class="btn btn-danger" type="submit"><span data-feather="trash-2"></span></button>
+              <button data-toggle="tooltip" title="Delete" class="btn btn-danger" type="submit"><span
+                  data-feather="trash-2"></span></button>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             </form>
             {% if eqp.isbroken %}
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-              <button data-toggle="tooltip" title="Mark as fixed" class="btn btn-success" type="submit"><span data-feather="tool"></span> </button>
+              <button data-toggle="tooltip" title="Mark as fixed" class="btn btn-success" type="submit"><span
+                  data-feather="tool"></span> </button>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             </form>
             {% else %}
             <form style="display:inline;" method="POST" action="{{ url_for('equipment_break', id=eqp.id) }}">
-              <button data-toggle="tooltip" title="Mark as broken" class="btn btn-warning" type="submit"> <span data-feather="alert-triangle"> </button>
+              <button data-toggle="tooltip" title="Mark as broken" class="btn btn-warning" type="submit"> <span
+                  data-feather="alert-triangle"> </button>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             </form>
             {% endif %}
           </td>
@@ -116,8 +123,8 @@
       width: '100%',
       heigth: '100%'
     });
-    $('#table_id').DataTable( {
-      "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+    $('#table_id').DataTable({
+      "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
       "pageLength": 25
     });
   });
