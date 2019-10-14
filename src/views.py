@@ -35,9 +35,9 @@ def equipment_add():
 @login_required
 def equipment_delete(id):
     eqpm = Equipment.query.filter_by(id=id).first()
-
-    db.session().delete(eqpm)
-    db.session().commit()
+    if eqpm in current_user.get_equipment():
+        db.session().delete(eqpm)
+        db.session().commit()
 
     return redirect(url_for("index"))
 

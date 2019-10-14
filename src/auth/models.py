@@ -30,3 +30,6 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+    
+    def get_equipment(self):
+        return self.equipment
