@@ -17,7 +17,7 @@ def index():
 def equipment_add():
     form = EquipmentAddForm(request.form)
     if not form.validate():
-        return render_template("index.html", form=form)
+        return render_template("index.html", form=form, modelsExist=Product.query.count() > 0)
 
     eqpm = Equipment(form.serialnumber.data)
     eqpm.model = form.model.data

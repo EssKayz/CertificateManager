@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, validators, ValidationError
+from wtforms.validators import DataRequired
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src.classification.models import Classification
@@ -8,10 +9,10 @@ from src.products.models import Product
 
 class ClassificationForm(FlaskForm):
     name = StringField("Name of classification", [validators.Length(
-        min=2, max=24, message="Name length invalid")])
+        min=2, max=24, message="Name length invalid"), DataRequired()])
 
     description = StringField("Description of classification", [validators.Length(
-        min=2, max=72, message="Description length invalid")])
+        min=2, max=72, message="Description length invalid"),  DataRequired() ])
 
     def validate_name(self, name):
         name = Classification.query.filter_by(

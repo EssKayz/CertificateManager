@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, validators, ValidationError
+from wtforms.validators import DataRequired
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 from src import db
@@ -19,10 +20,12 @@ class LoginForm(FlaskForm):
 
 
 class UserCreateForm(FlaskForm):
-    name = StringField("name", [validators.Length(
-        min=3, max=48, message="Name length invalid")])
+    name = StringField("name", [
+        validators.Length(
+            min=3, max=48, message="Name length invalid"),  DataRequired()]
+    )
     username = StringField("username", [validators.Length(
-        min=4, max=24, message="username length invalid")])
+        min=4, max=24, message="username length invalid"),  DataRequired()])
     password = PasswordField(
         "password", [validators.Length(min=4, message="password too short")])
 
@@ -41,7 +44,7 @@ class EquipmentAddForm(FlaskForm):
                              query_factory=lambda: Product.query.all(),
                              blank_text=u'Select a model...'
                              )
-    serialnumber = StringField("Serial Number")
+    serialnumber = StringField("Serial Number",  [ DataRequired() ])
 
     def validate_serialnumber(self, serialnumber):
         serialnumber = Equipment.query.filter_by(
