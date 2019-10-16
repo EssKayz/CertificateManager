@@ -70,3 +70,4 @@ LIMIT  10
 - [ ] Users can view their certificates on one list, and sort them by next-to-expire
 - [ ] Users can add optional calibration coefficients to their equipment
 - [ ] Users can add warranty information to equipment
+- [ ] Users can add a copy of their receipt to the warranty information
