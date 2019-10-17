@@ -1,6 +1,7 @@
 
 # Users
 - [x] It is possible to create an user
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -8,13 +9,14 @@
 INSERT INTO account (date_created, date_modified, name, username, password
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?)
 ```
-
 </p></details>
+</blockquote>
 
 - [x] It is possible to login with a created user
 
 ## Equipment
 - [x] Users can add equipment by manufacturer and model to their own profile from the list of models
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -22,10 +24,11 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?)
 INSERT INTO equipment (date_created, date_modified, model_id, person_id, serialnumber, isbroken) 
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
 ```
-
 </p></details>
+</blockquote>
 
 - [x] Users can view all their existing equipment 
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -35,31 +38,34 @@ equipment.date_created, equipment.date_modified, equipment.model_id, equipment.s
 FROM equipment
 WHERE ? = equipment.person_id
 ```
-
 </p></details>
+</blockquote>
 
 - [x] Users can mark one of their equipment as broken, or fixed.
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
 ```SQL
 UPDATE equipment SET date_modified=CURRENT_TIMESTAMP, isbroken=? WHERE equipment.id = ?
 ```
-
 </p></details>
+</blockquote>
 
 - [x] Users can delete equipment from their own list
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
 ```SQL
 DELETE FROM equipment WHERE equipment.id = ?
 ```
-
 </p></details>
+</blockquote>
 
 # Manufacturers
 - [x] Anyone can view a list of device manufacturers (Samsung, SteelSeries, Apple)
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -67,8 +73,10 @@ DELETE FROM equipment WHERE equipment.id = ?
  SELECT * FROM Manufacturer
 ```
 </p></details>
+</blockquote>
 
 - [x] Anyone can view a list of models/products made by each manufacturer
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -76,8 +84,10 @@ DELETE FROM equipment WHERE equipment.id = ?
  SELECT * FROM Product WHERE product.manufacturer_id = ?
 ```
 </p></details>
+</blockquote>
 
 - [x] Anyone can see the top 5 manufacturers with the most products/models
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -89,8 +99,10 @@ DELETE FROM equipment WHERE equipment.id = ?
  LIMIT 5
 ```
 </p></details>
+</blockquote>
 	
 - [x] Users can add a new device manufacturer to the list (Samsung)
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -99,9 +111,11 @@ INSERT INTO manufacturer (date_created, date_modified, name)
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)
 ```
 </p></details>
+</blockquote>
 
 # Models
 - [x] Anyone can view a top-10 list of the least prone to breaking models
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -123,8 +137,10 @@ LIMIT  10
 ```
 
 </p></details>
+</blockquote>
 
 - [x] Anyone can view all existing models
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -132,8 +148,10 @@ LIMIT  10
  SELECT * FROM Product
 ```
 </p></details>
+</blockquote>
 
 - [x] Users can add a new equipment model for a manufacturer (Galaxy S7, by Samsung)
+<blockquote>
 <details><summary>Click to view SQL</summary>
 <p>
 
@@ -142,8 +160,10 @@ LIMIT  10
  VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?)
 ```
 </p></details>
+</blockquote>
 
 - [x] Users can mark a model as EOL (Product is no longer manufactured / End Of Life)
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -152,11 +172,13 @@ UPDATE product SET date_modified=CURRENT_TIMESTAMP, eol=? WHERE product.id = ?
 ```
 
 </p></details>
+</blockquote>
 
 
 # Classifications
 - [x] Anyone can view all existing classifications, and see which products are linked to them
 - [x] Users can add new classifications with a description
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -166,8 +188,10 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?)
 ```
 
 </p></details>
+</blockquote>
 
 - [x] Users can edit the descriptions of the classifications
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -177,8 +201,10 @@ WHERE "Classification".id = ?
 ```
 
 </p></details>
+</blockquote>
 
 - [x] Users can delete classifications without deleting linked products
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -191,8 +217,10 @@ DELETE FROM "Classification"
 ```
 
 </p></details>
+</blockquote>
 
 - [x] Users can add classifications to products (Samsung Galaxy S7 has the classification rating "IP68")
+<blockquote>
 <details><summary> Click to view SQL </summary>
 <p>
 
@@ -201,6 +229,7 @@ INSERT INTO "ClassificationProduct" (classification_id, product_id) VALUES (?, ?
 ```
 
 </p></details>
+</blockquote>
 
 ## Stuff that will be implemented post-course / is not relevant for intents of the course
 
@@ -210,19 +239,3 @@ INSERT INTO "ClassificationProduct" (classification_id, product_id) VALUES (?, ?
 - [ ] Users can add optional calibration coefficients to their equipment
 - [ ] Users can add warranty information to equipment
 - [ ] Users can add a copy of their receipt to the warranty information
-
-
-<style>
-       p, ul {
-              margin-bottom: 0px !important;
-       }
-       summary {
-              margin-left: 2rem;
-              opacity: 0.85;
-              font-style: italic;
-       }
-       summary::-webkit-details-marker {
-              opacity: 0.85;
-       }
-
-</style>
