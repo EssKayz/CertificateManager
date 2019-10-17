@@ -40,7 +40,8 @@ def equipment_delete(id):
 @login_required
 def equipment_break(id):
     eqpm = Equipment.query.filter_by(id=id).first()
-    eqpm.isbroken = not eqpm.isbroken
-    db.session().commit()
+    if eqpm in current_user.get_equipment():
+        eqpm.isbroken = not eqpm.isbroken
+        db.session().commit()
 
     return redirect(url_for("index"))
