@@ -1,6 +1,6 @@
 To install the software >
 
-Make sure you have Python 3.6.x or better installed. 
+Make sure you have Python 3.6.x or newer installed. 
 https://www.python.org/downloads/
 
 Then, download the project source files
